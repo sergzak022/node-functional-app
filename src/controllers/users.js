@@ -1,13 +1,33 @@
+const { getUsers } = require('../models/user');
+
 exports.getUsers = ( req, res ) => {
-  res
-    .status(200)
-    .json([{email: 'ivandrago@gmail.com'}]);
+  console.log('getUsers');
+
+  getUsers()
+    .then(( users ) => {
+
+      console.log('getUsers resolves');
+
+      res.json({
+        data: users,
+        errors: []
+      });
+    });
+
 };
 
 exports.getUser = ( req, res ) => {
-  throw new Error('Not implemented');
+
 };
 
 exports.createUser = ( req, res ) => {
-  throw new Error('Not implemented');
+
+};
+
+exports.deleteUser = ( req, res ) => {
+
+};
+
+exports.updateUser = ( req, res ) => {
+
 };

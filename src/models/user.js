@@ -2,10 +2,11 @@ const knex = require('../db/db');
 
 const TABLE_NAME = 'users';
 
-export.TABLE_NAME = TABLE_NAME;
+exports.TABLE_NAME = TABLE_NAME;
 
 exports.getUsers = () => {
-
+  return knex(TABLE_NAME)
+    .select('email');
 };
 
 exports.getUserById = ( id ) => {

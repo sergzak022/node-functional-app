@@ -8,5 +8,3 @@ exports.getUsers = function( count ) {
     password: password()
   }));
 }
-
-
