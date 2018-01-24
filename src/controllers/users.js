@@ -1,15 +1,10 @@
-const { getUsers } = require('../models/user');
+const { getUsers, getUserById } = require('../models/user');
 
 exports.getUsers = ( req, res ) => {
-  console.log('getUsers');
-
   getUsers()
     .then(( users ) => {
-
-      console.log('getUsers resolves');
-
       res.json({
-        data: users,
+        users,
         errors: []
       });
     });
@@ -17,7 +12,23 @@ exports.getUsers = ( req, res ) => {
 };
 
 exports.getUser = ( req, res ) => {
+  // TODO: function that extracts propety from params
+  let userId = req.params && req.params.id;
 
+  getUserById( userId )
+    .then( ( [ user ] ) => {
+      if (user) {
+        res.json({
+          user,
+          errors: []
+        });
+      } else {
+        res.json({
+          user: null,
+          errors: ['Can not find user with given id']
+        });
+      }
+    })
 };
 
 exports.createUser = ( req, res ) => {

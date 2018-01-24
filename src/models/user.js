@@ -1,4 +1,4 @@
-const knex = require('../db/db');
+const knex = require('../../db');
 
 const TABLE_NAME = 'users';
 
