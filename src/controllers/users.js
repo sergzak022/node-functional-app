@@ -1,35 +1,58 @@
-const { getUsers, getUserById } = require('../models/user');
+const User = require('../models/user');
+const {getParam} = require('../utils/express-request');
+const {ifElse} = require('sanctuary');
 
-exports.getUsers = ( req, res ) => {
-  getUsers()
+exports.getUsers = getUsers;
+exports.getUser = getUser;
+
+
+function getUsersJson( users ) {
+  return {
+    users,
+    errors: []
+  };
+}
+
+function getUsers ( req, res ) {
+  User.getUsers()
     .then(( users ) => {
-      res.json({
-        users,
-        errors: []
-      });
+      res.json(getUsersJson(users));
     });
+}
 
-};
+function getUser ( req, res ) {
 
-exports.getUser = ( req, res ) => {
-  // TODO: function that extracts propety from params
-  let userId = req.params && req.params.id;
+  let userId = getParam('id', req);
 
-  getUserById( userId )
-    .then( ( [ user ] ) => {
-      if (user) {
-        res.json({
-          user,
-          errors: []
-        });
-      } else {
-        res.json({
-          user: null,
-          errors: ['Can not find user with given id']
-        });
-      }
-    })
-};
+  User.getUserById( userId )
+    .then(handleGetUserSuccess(res))
+}
+
+function handleGetUserSuccess (res) {
+  return ifElse(
+    ( [user] ) => !!user,
+    ( [user] ) => {
+      res.json(getUserJson(user));
+    },
+    () => {
+      res.json(getNoUserJson());
+    }
+  );
+}
+
+function getUserJson( user ) {
+  return {
+    user,
+    errors: []
+  };
+}
+
+function getNoUserJson( user ) {
+  return {
+    user: null,
+    errors: ['Can not find user with given id']
+  };
+}
 
 exports.createUser = ( req, res ) => {
 
