@@ -1,4 +1,4 @@
-const PRODUCTION = 'prodution';
+const PRODUCTION = 'production';
 const DEVELOPMENT = 'development';
 
 exports.isDevelopment = function () {
