@@ -1,4 +1,4 @@
-const {TABLE_NAME} = require('../../models/user');
+const {TABLE_NAME} = require('../src/models/user');
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists(TABLE_NAME, ( usersTable ) => {
