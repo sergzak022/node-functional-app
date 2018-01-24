@@ -6,7 +6,7 @@
   "scripts": {
     "run:dev": "NODE_ENV=production node index.js",
     "test": "mocha --recursive --watch tests",
-    "build:dev_db": "knex migrate:latest; knex seed: run;"
+    "devdb:build": "knex migrate:latest; knex seed:run;"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "knex": "^0.14.2",
+    "pg": "^7.4.1",
     "sanctuary": "^0.14.1",
     "sqlite3": "^3.1.13"
   },
