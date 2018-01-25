@@ -7,6 +7,7 @@ exports.TEST_USER_ID = TEST_USER_ID;
 
 exports.getUsers = getUsers;
 exports.getTestUser = getTestUser;
+exports.getFakeUser = getFakeUser;
 
 
 function getUsers( count ) {
