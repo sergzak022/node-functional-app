@@ -28,7 +28,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/sergzak022/node-functional-app.git',
       path : '/home/ubuntu/node-funtional-app',
-      'post-deploy' : 'npm install && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy' : 'npm install && pm2 startOrRestart ecosystem.config.js --env production'
     }
   }
 };
